@@ -1,0 +1,86 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class TrainCoachManagement {
+    private ArrayList<String> coaches; // List to store coach names
+
+    public TrainCoachManagement() {
+        coaches = new ArrayList<>();
+    }
+
+    // Add a coach to the train
+    public void addCoach(String coachName) {
+        coaches.add(coachName);
+        System.out.println("Coach " + coachName + " added successfully!");
+    }
+
+    // Remove a coach from the train
+    public void removeCoach(String coachName) {
+        if (coaches.remove(coachName)) {
+            System.out.println("Coach " + coachName + " removed successfully!");
+        } else {
+            System.out.println("Coach " + coachName + " not found.");
+        }
+    }
+
+    // Display the list of coaches
+    public void displayCoaches() {
+        if (coaches.isEmpty()) {
+            System.out.println("No coaches in the train.");
+        } else {
+            System.out.println("List of Coaches:");
+            for (int i = 0; i < coaches.size(); i++) {
+                System.out.println((i + 1) + ". " + coaches.get(i));
+            }
+        }
+    }
+
+    // Get the total number of coaches
+    public void getTotalCoaches() {
+        System.out.println("Total number of coaches: " + coaches.size());
+    }
+
+    public static void main(String[] args) {
+        TrainCoachManagement management = new TrainCoachManagement();
+        Scanner scanner = new Scanner(System.in);
+        int choice;
+
+        do {
+            System.out.println("\nTrain Coach Management System");
+            System.out.println("1. Add Coach");
+            System.out.println("2. Remove Coach");
+            System.out.println("3. Display Coaches");
+            System.out.println("4. Total Coaches");
+            System.out.println("5. Exit");
+            System.out.print("Enter your choice: ");
+            choice = scanner.nextInt();
+            scanner.nextLine(); // Consume the newline character
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter coach name to add: ");
+                    String coachNameToAdd = scanner.nextLine();
+                    management.addCoach(coachNameToAdd);
+                    break;
+                case 2:
+                    System.out.print("Enter coach name to remove: ");
+                    String coachNameToRemove = scanner.nextLine();
+                    management.removeCoach(coachNameToRemove);
+                    break;
+                case 3:
+                    management.displayCoaches();
+                    break;
+                case 4:
+                    management.getTotalCoaches();
+                    break;
+                case 5:
+                    System.out.println("Exiting the system. Goodbye!");
+                    break;
+                default:
+                    System.out.println("Invalid choice! Please try again.");
+            }
+        } while (choice != 5);
+
+        scanner.close();
+    }
+}
